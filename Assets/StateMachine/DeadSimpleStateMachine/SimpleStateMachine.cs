@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Maintain the current state that the state machine is in
@@ -12,6 +13,7 @@ public class SimpleStateMachine : MonoBehaviour {
     /// <summary>
     /// A state in the state machine
     /// </summary>
+    [Serializable]
     public class State {
         [Tooltip("Name of the State")]
         public string name;
