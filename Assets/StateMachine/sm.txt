@@ -1,0 +1,44 @@
+#Sling David State Machine
+
+
+#sample commands
+
+#AddState(state_name)
+
+#AddTimedTransition(from_state, to_state, time_in_seconds)
+
+#AddNamedTransition(from_state, to_state, event_name)
+
+#AddBackTransition(from_state) #allows "go back to previous state in
+							      # history"
+
+
+AddState(Start)
+AddTimedTransition(Start, Splash, 0.1)
+
+AddState(Splash)
+AddTimedTransition(Splash, Title, 2.5)
+
+AddState(Title)
+AddTimedTransition(Title, Description, 10)
+AddNamedTransition(Title, Description, Next)
+AddNamedTransition(Title, Options, Options)
+AddNamedTransition(Title, Play, Play)
+
+AddState(Description)
+AddTimedTransition(Description, Demo, 10)
+AddNamedTransition(Description, Demo, Next)
+AddNamedTransition(Description, Options, Options)
+AddNamedTransition(Description, Play, Play)
+
+AddState(Demo)
+AddTimedTransition(Demo, Title, 10)
+AddNamedTransition(Demo, Title, Next)
+AddNamedTransition(Demo, Options, Options)
+AddNamedTransition(Demo, Play, Play)
+
+AddState(Options)
+AddBackTransition(Options)
+
+AddState(Play)
+

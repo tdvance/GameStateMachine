@@ -1,0 +1,96 @@
+#Sling David State Machine
+
+
+#comments begin with "#" and end with End Of Line
+
+#blank lines are ignored
+
+#Whitespace OK between tokens
+#Semicolons delimit commands
+
+#all commands, names, etc. are case-insensitive, but are displayed in
+#the case in which they are defined.  They can be any legal C
+#identifier (start with A-Z, a-z, or _, remaining characters can be
+#A-Z, a-z, or _ or 0-9).
+
+#A state must be added before a transition is added from that state,
+#but it need not be added before a transition is added to that state
+
+#An event must be added before adding a named transition that uses it
+
+#A scene must be in the Build Settings scene list to be loaded
+#automatically
+
+
+#sample commands
+
+
+#State(state_name);
+
+#LoadScene(state_name, scene_name);  #load scene on entering this state
+
+#TimedTransition(from_state, to_state, time_in_seconds);
+
+#Event(event_name);
+
+#NamedTransition(from_state, to_state, event_name);
+
+
+#BackTransition(from_state); #allows "go back to previous state in
+							      # history"
+
+#LogStateEntry()
+
+#LogStateExit()
+
+#LogSceneLoaded()
+
+#LogTimedTransitions()
+
+#LogNamedTransitions()
+
+#LogBackTransitions()
+
+#LogAllTransitions()
+
+#LogAll()
+
+#StopLogging()
+
+State(Start);
+TimedTransition(Start, Splash, 0.1);
+
+State(Splash);
+LoadScene(Splash, Splash)
+TimedTransition(Splash, Title, 2.5);
+
+Event(Next);
+Event(Options);
+Event(Play);
+
+State(Title);
+LoadScene(Title, Title)
+TimedTransition(Title, Description, 10);
+NamedTransition(Title, Description, Next);
+NamedTransition(Title, Options, Options);
+NamedTransition(Title, Play, Play);
+
+State(Description);
+LoadScene(Description, Description)
+TimedTransition(Description, Demo, 10);
+NamedTransition(Description, Demo, Next);
+NamedTransition(Description, Options, Options);
+NamedTransition(Description, Play, Play);
+
+State(Demo);
+LoadScene(Demo, Demo)
+TimedTransition(Demo, Title, 10);
+NamedTransition(Demo, Title, Next);
+NamedTransition(Demo, Options, Options);
+NamedTransition(Demo, Play, Play);
+
+State(Options);
+LoadScene(Options, Options)
+BackTransition(Options);
+
+State(Play);
