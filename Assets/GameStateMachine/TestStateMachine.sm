@@ -1,0 +1,80 @@
+# Test State Machine
+
+#commands are C-like, as are identifiers.  Except for scene names,
+#identifiers are case-insensitive. Command names are also
+#case-insensitive.
+
+State(SplashState); #every state is defined this way
+
+#now fill in details for state
+
+DefineStart(SplashState); #make this the start state
+
+#load this scene; a scene named "SplashScreen" must be in the build
+#settings
+LoadScene(SplashState, SplashScreen); 
+
+#in 2.5 seconds, splash state goes to title state
+TimedTransition(SplashState, TitleState, 2.5);
+
+
+#next state
+
+State(TitleState);
+LoadScene(TitleState, TitleScreen);
+TimedTransition(TitleState, DescriptionState, 10);
+
+#allow events (e.g. button presses) to change the state
+NamedTransition(TitleState, OptionsState, Options) ;
+NamedTransition(TitleState, GameState, Play);
+
+#events, like states, have to be defined
+Event(Options);
+Event(Play);
+
+#For example, wire an "options button" UI button in the scene to call
+#the GameStateMachine script's "SendEvent" with the string argument
+#"Options".
+
+
+#and so on
+
+State(DescriptionState);
+LoadScene(DescriptionState, DescriptionScreen);
+TimedTransition(DescriptionState, HighScoreState, 10);
+NamedTransition(DescriptionState, OptionsState, Options) ;
+NamedTransition(DescriptionState, GameState, Play);
+
+State(HighScoreState);
+LoadScene(HighScoreState, HighScoreScreen);
+TimedTransition(HighScoreState, DemoState, 10);
+NamedTransition(HighScoreState, OptionsState, Options) ;
+NamedTransition(HighScoreState, GameState, Play);
+
+
+State(DemoState);
+LoadScene(DemoState, DemoScreen);
+TimedTransition(DemoState, TitleState, 10);
+NamedTransition(DemoState, OptionsState, Options) ;
+NamedTransition(DemoState, GameState, Play);
+
+
+State(OptionsState);
+#load options without unloading previous scene
+LoadSceneAdditive(OptionsState, OptionsMenuScreen);
+
+#Make the "Back" event go back in the state history to the state
+#that the options menu was called from
+BackTransition(OptionsState, Back);
+#Since scene was loaded additively, it will be unloaded rather
+#than the scene of the previous state loaded.
+
+Event(Back);
+
+
+State(GameState);
+LoadScene(GameState, GameScreen);
+#play the game....
+
+
+LogAll(); #log everything; there are other log commands too

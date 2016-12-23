@@ -1,0 +1,16 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}What is a State Machine}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Mouse Trap Model}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Game State Machine}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}Features}{5}{section.2}
+\contentsline {section}{\numberline {3}Walk-Through: Setting Up a State Machine for a Game}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Create a new, empty project}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Import the Asset}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Set up a starting scene}{8}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Creating a State Machine}{9}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Wire up the State Machine program to the State Machine}{11}{subsection.3.5}
+\contentsline {section}{\numberline {4}State Machine Mini-Language Reference}{12}{section.4}
+\contentsline {subsection}{\numberline {4.1}Grammar}{13}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Commands Supported}{13}{subsection.4.2}
+\contentsline {section}{\numberline {A}Sample Program}{16}{appendix.A}
+\contentsline {section}{\numberline {B}Mathematical Definition of a Deterministic Finite Automaton}{18}{appendix.B}
